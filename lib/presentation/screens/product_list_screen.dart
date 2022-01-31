@@ -49,61 +49,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
         body: Stack(
           children: [
             _buildContentWidget(),
-            // DraggableScrollableSheet(
-            //   initialChildSize: 0.3,
-            //   minChildSize: 0.1,
-            //   maxChildSize: 0.8,
-            //   builder:
-            //       (BuildContext context, ScrollController scrollController) {
-            //     // return Container(
-            //     //   color: Colors.white,
-            //     //   child: ListView.builder(
-            //     //       controller: scrollController,
-            //     //       itemCount: 20,
-            //     //       itemBuilder: (BuildContext context, int index) {
-            //     //         return ListTile(
-            //     //           title: Text('Item $index'),
-            //     //         );
-            //     //       }),
-            //     // );
-            //     return ExpandableNotifier(
-            //       // <-- Provides ExpandableController to its children
-            //
-            //       child: Column(
-            //         children: [
-            //           Expandable(
-            //             // <-- Driven by ExpandableController from ExpandableNotifier // <-- Expands when tapped on the cover photo
-            //             expanded: Column(children: [
-            //               containerRound(),
-            //               containerRound(),
-            //               containerRound(),
-            //               containerRound(),
-            //               ExpandableButton(
-            //                 // <-- Collapses when tapped on
-            //                 child: Text("Back"),
-            //               ),
-            //             ]),
-            //             collapsed: ExpandableButton(
-            //               theme: ExpandableThemeData(
-            //                   alignment: Alignment.bottomCenter),
-            //               child: Container(
-            //                 child: containerRound(),
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     );
-            //     //
-            //     //  return ExpandablePanel(
-            //     //   header: Text(article.title),
-            //     //   collapsed: Text(article.body, softWrap: true, maxLines: 2, overflow: TextOverflow.ellipsis,),
-            //     //   expanded: Text(article.body, softWrap: true, ),
-            //     //   tapHeaderToExpand: true,
-            //     //   hasIcon: true,
-            //     // );
-            //   },
-            // )
           ],
         ));
   }
@@ -116,7 +61,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           create: (_) => ProductProvider(apiService: ApiService()),
           child: Consumer<ProductProvider>(builder: (context, state, _) {
             return state.state == ResultState.Loading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : Column(
@@ -176,20 +121,4 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget containerRound() {
-    return new Container(
-      height: 50.0,
-      color: Colors.transparent,
-      child: new Container(
-          decoration: new BoxDecoration(
-              color: Colors.green,
-              borderRadius: new BorderRadius.only(
-                topLeft: const Radius.circular(40.0),
-                topRight: const Radius.circular(40.0),
-              )),
-          child: new Center(
-            child: new Text("Hi modal sheet"),
-          )),
-    );
-  }
 }
