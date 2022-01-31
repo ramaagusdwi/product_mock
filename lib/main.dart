@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testfokatech/common/navigation.dart';
+import 'package:testfokatech/presentation/screens/menu_screen.dart';
 import 'package:testfokatech/presentation/screens/product_list_screen.dart';
 
 import 'presentation/screens/product_detail_screen.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductListScreen.routeName: (context) => const ProductListScreen(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+        MenuScreen.routeName: (context) => MenuScreen(),
       },
       navigatorKey: navigatorKey,
     );
