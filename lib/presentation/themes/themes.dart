@@ -5,6 +5,7 @@ Color primaryColor = hexToColor("#E34D40");
 Color lightPrimaryColor =  hexToColor("#eb837a");
 Color blackFontColorDark = hexToColor("#444444");
 Color greyFontColorDark = hexToColor("#666666");
+Color greyFontColor= hexToColor("#bfbfbf");
 Color iconColor = hexToColor("#E24E42");
 Color bgIconColor = Color(0xB3E24E42);
 

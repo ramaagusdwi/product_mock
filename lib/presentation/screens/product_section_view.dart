@@ -20,7 +20,7 @@ class ProductSectionView extends StatelessWidget {
       onTap: () {
         log("cekTapDataItem $data");
         Navigation.intentWithData(
-            ProductDetailScreen.routeName, {}); //pindah ke halaman detail
+            ProductDetailScreen.routeName, data); //pindah ke halaman detail
       },
       child: Card(
         elevation: 2,
@@ -90,11 +90,13 @@ class ProductSectionView extends StatelessWidget {
                       Text(
                         "${data.name}",
                         style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 12,
-                              color: greyFontColorDark,
-                              fontWeight: FontWeight.normal,
-                              letterSpacing: .5),
+                          textStyle: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 12,
+                                color: greyFontColorDark,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: .5),
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -103,10 +105,12 @@ class ProductSectionView extends StatelessWidget {
                       Text(
                         "${data.price}",
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: blackFontColorDark),
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: blackFontColorDark),
+                        ),
                       ),
                     ],
                   ),

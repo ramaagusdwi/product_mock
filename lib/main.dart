@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: ProductListScreen.routeName,
       routes: {
         ProductListScreen.routeName: (context) => const ProductListScreen(),
-        ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
+        ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
       },
       navigatorKey: navigatorKey,
     );
