@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:testfokatech/data/api_service.dart';
 import 'package:testfokatech/presentation/screens/product_section_view.dart';
@@ -5,6 +6,7 @@ import 'package:testfokatech/presentation/themes/themes.dart';
 import 'package:testfokatech/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ProductListScreen extends StatelessWidget {
   static const routeName = "/product";
@@ -51,12 +53,36 @@ class ProductListScreen extends StatelessWidget {
   }
 
   Widget _buildList(ProductProvider state) {
-    if (state.state == ResultState.Loading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (state.state == ResultState.hasData) {
-      return GridView.count(
+    return SmartRefresher(
+      enablePullDown: true,
+      enablePullUp: true,
+      header: const WaterDropHeader(
+        waterDropColor: Colors.redAccent,
+      ),
+      footer: CustomFooter(
+        builder: (BuildContext context, LoadStatus? mode) {
+          Widget? body;
+          if (mode == LoadStatus.idle) {
+            body = Text("pull up load");
+          } else if (mode == LoadStatus.loading) {
+            body = CupertinoActivityIndicator();
+          } else if (mode == LoadStatus.failed) {
+            body = Text("Load Failed!Click retry!");
+          } else if (mode == LoadStatus.canLoading) {
+            body = Text("release to load more");
+          } else {
+            body = Text("No more Data");
+          }
+          return Container(
+            height: 55.0,
+            child: Center(child: body),
+          );
+        },
+      ),
+      controller: state.refreshController,
+      onRefresh: state.onRefresh,
+      onLoading: state.onLoading,
+      child: GridView.count(
           primary: false,
           crossAxisSpacing: 5,
           mainAxisSpacing: 5,
@@ -67,21 +93,7 @@ class ProductListScreen extends StatelessWidget {
               ProductSectionView(
                 data: state.products[i],
               )
-          ]);
-    } else if (state.state == ResultState.NoData) {
-      print("masuk nodata");
-      return Center(
-        child: Text(state.message),
-      );
-    } else if (state.state == ResultState.hasError) {
-      print("masuk haserror");
-      return Center(
-        child: Text(state.message),
-      );
-    } else {
-      return const Center(
-        child: Text(''),
-      );
-    }
+          ]),
+    );
   }
 }

@@ -4,14 +4,17 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:testfokatech/data/api_service.dart';
 import 'package:testfokatech/models/product.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 enum ResultState { hasData, Loading, hasError, NoData }
 
 class ProductProvider extends ChangeNotifier {
   final ApiService apiService;
+  late RefreshController refreshController;
 
   ProductProvider({required this.apiService}) {
     fetchAllProduct();
+    refreshController = RefreshController(initialRefresh: false);
   }
 
   late ResultState _resultState;
@@ -56,5 +59,21 @@ class ProductProvider extends ChangeNotifier {
         print("Unhandled exception: ${e.toString()}");
       return _message = 'Unknwon Error Occured';
     }
+  }
+
+  void onRefresh() async {
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    fetchAllProduct();
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+    fetchAllProduct();
+    notifyListeners();
   }
 }
