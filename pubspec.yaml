@@ -85,14 +85,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: CustomIcon
-      fonts:
-        - asset: icons/CustomIcon.ttf
-
-    - family: MyFlutterApp
-      fonts:
-        - asset: icons/MyFlutterApp.ttf
-
     - family: MyIcon
       fonts:
         - asset: icons/MyIcon.ttf
