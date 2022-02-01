@@ -52,6 +52,7 @@ class ProductProvider extends ChangeNotifier {
 
       if (e is SocketException) {
         print("Socket exception: ${e.toString()}");
+
         return _message = 'Check your internet connection';
       } else if (e is TimeoutException) {
         print("Timeout exception: ${e.toString()}");

@@ -15,8 +15,8 @@ class ProductSectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // log("cekDataItem $character");
-    return InkWell(
+    log("cekDataItem $data");
+    return GestureDetector(
       onTap: () {
         log("cekTapDataItem $data");
         Navigation.intentWithData(
