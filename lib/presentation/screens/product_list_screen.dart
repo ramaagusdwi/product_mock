@@ -4,7 +4,6 @@ import 'package:testfokatech/common/navigation.dart';
 import 'package:testfokatech/data/api_service.dart';
 import 'package:testfokatech/models/custom_icon.dart';
 import 'package:testfokatech/presentation/my_icon_icons.dart';
-import 'package:testfokatech/presentation/screens/bottom_sheet_menu.dart';
 import 'package:testfokatech/presentation/screens/menu_screen.dart';
 import 'package:testfokatech/presentation/screens/product_section_view.dart';
 import 'package:testfokatech/presentation/themes/themes.dart';
@@ -15,7 +14,6 @@ import 'package:testfokatech/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:expandable/expandable.dart';
 
 class ProductListScreen extends StatefulWidget {
   static const routeName = "/product";
@@ -31,9 +29,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   void initState() {
-    // WidgetsBinding.instance?.addPostFrameCallback((_) {
-    //   bottomSheetMenu(context);
-    // });
     listIcon = [
       CustomIcon(iconData: MyIcon.live_tv, title: 'Live Show'),
       CustomIcon(iconData: MyIcon.cast_connected, title: 'Live Class'),
@@ -60,7 +55,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
             ),
           ),
         ),
-        // body: _buildBottomNavBar(),
         body: Stack(
           children: [
             _buildContentWidget(),
